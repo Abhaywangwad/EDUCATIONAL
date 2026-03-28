@@ -4,7 +4,6 @@ $repoRoot = Split-Path -Parent $PSScriptRoot
 $backendDir = Join-Path $repoRoot "backend"
 $venvPython = Join-Path $backendDir ".venv\Scripts\python.exe"
 $port = 8000
-$runnerScript = Join-Path $PSScriptRoot "run-backend.cmd"
 
 function Get-BasePythonCommand {
     $localPython311 = Join-Path $env:LocalAppData "Programs\Python\Python311\python.exe"
@@ -62,45 +61,14 @@ if ($portInUse) {
 }
 
 Write-Host "Starting FastAPI backend on http://127.0.0.1:$port" -ForegroundColor Green
-$backendProcess = Start-Process `
-    -FilePath "cmd.exe" `
-    -ArgumentList @(
-        "/k",
-        "`"$runnerScript`"",
-        "$port"
-    ) `
-    -WorkingDirectory $repoRoot `
-    -PassThru
-
-$healthUrl = "http://127.0.0.1:$port/health"
-$started = $false
-
-for ($attempt = 0; $attempt -lt 20; $attempt++) {
-    Start-Sleep -Milliseconds 500
-
-    if ($backendProcess.HasExited) {
-        break
-    }
-
-    try {
-        $response = Invoke-WebRequest $healthUrl -UseBasicParsing -TimeoutSec 2
-        if ($response.StatusCode -eq 200) {
-            $started = $true
-            break
-        }
-    }
-    catch {
-    }
+Write-Host "Keep this terminal open while the backend is running." -ForegroundColor Gray
+Push-Location $backendDir
+$previousPythonPath = $env:PYTHONPATH
+try {
+    $env:PYTHONPATH = ".\.venv\Lib\site-packages;."
+    & $basePythonExecutable @basePythonArgs -m run_server $port
 }
-
-if (-not $started) {
-    Write-Host "Backend did not stay up." -ForegroundColor Red
-    Write-Host "Check the newly opened backend command window for the exact Python or Uvicorn error." -ForegroundColor Yellow
-    exit 1
+finally {
+    $env:PYTHONPATH = $previousPythonPath
+    Pop-Location
 }
-
-Write-Host "Backend started successfully." -ForegroundColor Green
-Write-Host "Health check: $healthUrl" -ForegroundColor White
-Write-Host "Process ID: $($backendProcess.Id)" -ForegroundColor White
-Write-Host "Stop it with: Stop-Process -Id $($backendProcess.Id) -Force" -ForegroundColor White
-Write-Host "A separate backend command window will stay open while the API is running." -ForegroundColor Gray
