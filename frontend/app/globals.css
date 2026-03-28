@@ -1,0 +1,637 @@
+:root {
+  --bg: #f5f1e8;
+  --bg-soft: #fbf8f2;
+  --surface: #fffdf9;
+  --surface-strong: #ffffff;
+  --line: #d9d1c5;
+  --line-strong: #c7bdaf;
+  --text: #223043;
+  --muted: #66778d;
+  --primary: #2458a6;
+  --primary-strong: #173c73;
+  --primary-soft: #e8effc;
+  --teal: #0b8a74;
+  --teal-soft: #e3f7f0;
+  --amber: #a36b1b;
+  --amber-soft: #fff4e1;
+  --red: #b24f4f;
+  --red-soft: #fdecec;
+  --shadow-sm: 0 10px 24px rgba(34, 48, 67, 0.08);
+  --shadow-md: 0 18px 48px rgba(34, 48, 67, 0.12);
+  --radius-lg: 24px;
+  --radius-md: 18px;
+  --radius-sm: 14px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body), "Source Sans 3", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top left, rgba(36, 88, 166, 0.08), transparent 26%),
+    radial-gradient(circle at bottom right, rgba(11, 138, 116, 0.06), transparent 20%),
+    var(--bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.brand,
+.portalBrand,
+.statValue {
+  font-family: var(--font-display), "Manrope", sans-serif;
+  letter-spacing: -0.03em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button,
+.button,
+.actions a,
+.actionCard,
+.portalNav a,
+.textLink,
+.secondary {
+  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
+}
+
+button,
+.button,
+.secondary,
+.actions a {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: var(--primary);
+  color: #ffffff;
+  padding: 12px 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+button:hover,
+.button:hover,
+.actions a:hover {
+  background: var(--primary-strong);
+}
+
+button.secondary,
+.secondary {
+  background: var(--surface-strong);
+  border-color: var(--line);
+  color: var(--text);
+}
+
+button.secondary:hover,
+.secondary:hover {
+  background: var(--bg-soft);
+}
+
+button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  background: var(--surface-strong);
+  color: var(--text);
+  padding: 13px 14px;
+  outline: none;
+}
+
+textarea {
+  min-height: 124px;
+  resize: vertical;
+  line-height: 1.6;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #8eb1eb;
+  box-shadow: 0 0 0 4px rgba(36, 88, 166, 0.1);
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.portalLead,
+.muted,
+.helperText,
+.fieldHint {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.marketingShell {
+  width: min(1240px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 48px;
+}
+
+.marketingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 253, 249, 0.92);
+  box-shadow: var(--shadow-sm);
+}
+
+.portalBrand {
+  font-size: 1.4rem;
+  font-weight: 800;
+}
+
+.heroStage {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+  gap: 24px;
+  padding: 28px 0 24px;
+}
+
+.heroCopy,
+.heroPanelLarge,
+.panelSurface,
+.statCard,
+.miniCard,
+.listCard,
+.accessCard,
+.personaCard,
+.examCard,
+.examSidebar .panelSurface {
+  border: 1px solid var(--line);
+  background: rgba(255, 253, 249, 0.96);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.heroCopy,
+.heroPanelLarge,
+.panelSurface,
+.accessCard,
+.examCard {
+  padding: 28px;
+}
+
+.heroCopy h1,
+.portalHeader h1,
+.accessCard h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.3rem, 4vw, 3.6rem);
+  line-height: 1.03;
+}
+
+.heroCopy p,
+.portalLead {
+  margin: 0;
+  max-width: 760px;
+}
+
+.statStrip,
+.portalPanelGrid,
+.miniStats,
+.weights,
+.roleGrid,
+.actionGrid {
+  display: grid;
+  gap: 18px;
+}
+
+.statStrip {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.portalPanelGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.miniStats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.actionGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.roleGrid {
+  grid-template-columns: minmax(250px, 0.85fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: start;
+}
+
+.roleColumn {
+  display: grid;
+  gap: 14px;
+}
+
+.statCard,
+.miniCard,
+.listCard,
+.personaCard {
+  padding: 18px;
+}
+
+.cardLabel {
+  margin: 0 0 10px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+}
+
+.statValue {
+  font-size: 2.1rem;
+  font-weight: 800;
+}
+
+.panelList,
+.sectionStack {
+  display: grid;
+  gap: 14px;
+}
+
+.sectionHeader,
+.split,
+.pillRow,
+.actions,
+.portalHeader {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.sectionHeader,
+.portalHeader {
+  justify-content: space-between;
+}
+
+.sectionHeader {
+  margin-bottom: 14px;
+}
+
+.portalContent {
+  display: grid;
+  gap: 20px;
+}
+
+.portalShell {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+
+.portalSidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px 22px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(255, 253, 249, 0.98), rgba(247, 241, 232, 0.96));
+}
+
+.portalIdentity {
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface-strong);
+}
+
+.portalNav {
+  display: grid;
+  gap: 10px;
+}
+
+.portalNav a {
+  display: flex;
+  align-items: center;
+  padding: 13px 14px;
+  border-radius: 16px;
+  color: var(--muted);
+  border: 1px solid transparent;
+}
+
+.portalNav a:hover,
+.portalNav a.active {
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  border-color: #c9d7f3;
+}
+
+.portalSidebarFoot {
+  margin-top: auto;
+  display: grid;
+  gap: 10px;
+}
+
+.portalMain {
+  padding: 26px;
+}
+
+.portalHeader {
+  margin-bottom: 20px;
+}
+
+.portalHeader h1 {
+  margin: 0 0 10px;
+  font-size: clamp(1.9rem, 3vw, 2.6rem);
+}
+
+.portalHeaderMeta {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: grid;
+  gap: 8px;
+}
+
+.field label,
+.weightCard label {
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.weights {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.weightCard {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+}
+
+.actionCard {
+  display: grid;
+  gap: 8px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line);
+  background: var(--surface-strong);
+}
+
+.actionCard:hover {
+  transform: translateY(-1px);
+  border-color: #b8cbea;
+}
+
+.scoreBadge {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: var(--primary-soft);
+  color: var(--primary-strong);
+  font-weight: 800;
+}
+
+.chip,
+.pill,
+.subtleTag,
+.inlineStatus {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 7px 11px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.chip,
+.subtleTag {
+  background: var(--bg-soft);
+  color: var(--text);
+  border: 1px solid var(--line);
+}
+
+.pill {
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+
+.inlineStatus.statusGood {
+  background: var(--teal-soft);
+  color: var(--teal);
+}
+
+.inlineStatus.statusWarn {
+  background: var(--amber-soft);
+  color: var(--amber);
+}
+
+.notice,
+.error,
+.accessCard {
+  line-height: 1.6;
+}
+
+.notice {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #cad8ef;
+  background: #eef4ff;
+  color: #244271;
+}
+
+.error {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #f2c7c7;
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.listTitle {
+  display: block;
+  margin-bottom: 6px;
+}
+
+.textLink {
+  color: var(--primary-strong);
+  font-weight: 700;
+}
+
+.textLink:hover {
+  color: var(--primary);
+}
+
+.sectionDivider {
+  height: 1px;
+  background: var(--line);
+  margin: 8px 0;
+}
+
+.dualFields {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.meter {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.meterBar {
+  width: 100%;
+  height: 10px;
+  border-radius: 999px;
+  background: #e1ddd5;
+  overflow: hidden;
+}
+
+.meterFill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #7ea4e3 0%, var(--primary) 100%);
+}
+
+.examLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(320px, 0.8fr);
+  gap: 20px;
+}
+
+.examHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.examHeader h2,
+.panelSurface h2,
+.panelSurface h3,
+.heroPanelLarge h2,
+.personaCard h3 {
+  margin: 0 0 8px;
+}
+
+.examTimer {
+  min-width: 120px;
+  padding: 14px 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+  display: grid;
+  gap: 8px;
+  text-align: right;
+}
+
+.examTimer strong {
+  font-family: var(--font-display), "Manrope", sans-serif;
+  font-size: 1.5rem;
+}
+
+.examSidebar {
+  display: grid;
+  gap: 18px;
+}
+
+.studentResultHero {
+  text-align: left;
+}
+
+.scoreHero {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 12px 0 18px;
+}
+
+@media (max-width: 1100px) {
+  .portalShell {
+    grid-template-columns: 1fr;
+  }
+
+  .portalSidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .roleGrid,
+  .heroStage,
+  .portalPanelGrid,
+  .examLayout,
+  .actionGrid,
+  .statStrip,
+  .miniStats,
+  .weights,
+  .dualFields {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .marketingShell {
+    width: min(100%, calc(100% - 24px));
+  }
+
+  .marketingHeader,
+  .portalMain {
+    padding: 18px;
+  }
+
+  .heroCopy,
+  .heroPanelLarge,
+  .panelSurface,
+  .accessCard,
+  .examCard {
+    padding: 20px;
+  }
+
+  .portalHeader,
+  .sectionHeader,
+  .examHeader {
+    align-items: flex-start;
+  }
+}

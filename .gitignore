@@ -1,0 +1,11 @@
+.next/
+node_modules/
+backend/.venv/
+backend/data/
+frontend/.next/
+frontend/node_modules/
+__pycache__/
+*.pyc
+.env
+.env.local
+Thumbs.db
